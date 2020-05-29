@@ -46,6 +46,7 @@ make clean
     hisho_stack__free(hisho_p);
     hisho_stack__print(hisho_p);
     ```
+    *stdout*
     ```
     [hisho       ]
     [    ^       ]
