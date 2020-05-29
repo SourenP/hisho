@@ -6,6 +6,8 @@ Status: _WIP_
 
 ## Resources
 
+- K&R
+  - [The C Programming Language. 2nd Edition](https://g.co/kgs/qax39B)
 - [blogspot: bitsquid](http://bitsquid.blogspot.com/)
   - [Allocation Adventures 1: The DataComponent](http://bitsquid.blogspot.com/2015/06/allocation-adventures-1-datacomponent.html)
   - [Allocation Adventures 2: Arrays of Arrays](http://bitsquid.blogspot.com/2015/06/allocation-adventures-2-arrays-of-arrays.html)
@@ -26,6 +28,8 @@ Status: _WIP_
   - [Memory Allocators 101 - Write a simple memory allocator](https://arjunsreedharan.org/post/148675821737/memory-allocators-101-write-a-simple-memory)
 - [Marek Vavrusa](https://marek.vavrusa.com/)
   - [What a C programmer should know about memory](https://marek.vavrusa.com/memory/)
+- [developer.ibm.com](https://developer.ibm.com/)
+ - [Data alignment: Straighten up and fly right](https://developer.ibm.com/technologies/systems/articles/pa-dalign/)
 
 ## Namesake
 
