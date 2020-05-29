@@ -1,5 +1,5 @@
 CC = clang
-PROG = hisho
+PROG = hisho_test
 
 include common.mk
 

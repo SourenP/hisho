@@ -4,8 +4,10 @@ SEARCHPATH += src
 vpath %.c $(SEARCHPATH)
 vpath %.h $(SEARCHPATH)
 
-DEPS += common.h
+DEPS +=
 
+_OBJS += hisho_stack.o
+_OBJS += hisho_stack_test.o
 _OBJS += main.o
 
 OBJS = $(patsubst %,$(OUT)/%,$(_OBJS))
