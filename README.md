@@ -22,18 +22,18 @@ make clean
 - **Code**: [src/hisho_stack.h](src/hisho_stack.h)
 - **Test**: [src/hisho_stack_test.c](src/hisho_stack_test.c)
 - **Description**:
-    ```
-    /**
-    * A rudimentary storage allocator that uses a LIFO queue (stack) to manage
-    * memory.
-    * Free calls must be made in opposite order to the alloc calls.
-    * Memory is fixed in size and stored in a static variable (data segment of
-    * virtual address space of program).
-    *
-    * Written with the help of "K&R: The C Programming Language. 2nd Edition:
-    * Chapter 5.4".
-    */
-    ```
+  -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
+  - Free calls must be made in opposite order to the alloc calls.
+  - Memory is fixed in size and stored in a static variable (data segment of virtual address space of program).
+  - Written with the help of "K&R: The C Programming Language. 2nd Edition: Chapter 5.4".
+  - Pros:
+    - Very simple
+    - Data stored sequentially 
+  - Cons:
+    - Fixed size
+    - Can only free last allocation
+    - Wastes unused memory space
+    - Todo: add more later
 - **Usage**:
     ```c
     // alloc
@@ -85,6 +85,7 @@ make clean
 ## Todo
 
 - [X] Stack memory allocator with static storage
+  - [ ] Add more pros/cons
 - [ ] Buddy memory allocator
 
 ## Namesake
