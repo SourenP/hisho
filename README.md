@@ -1,8 +1,11 @@
 # Hisho
 
+![hisho_icon.png](images/hisho_icon.png)
+
 Several memory allocators in C99 written for learning purposes.
 
 Status: _WIP_ (see [#Todo](#todo))
+
 
 ## Run
 
