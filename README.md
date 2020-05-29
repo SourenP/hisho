@@ -29,7 +29,7 @@ Status: _WIP_
 - [Marek Vavrusa](https://marek.vavrusa.com/)
   - [What a C programmer should know about memory](https://marek.vavrusa.com/memory/)
 - [developer.ibm.com](https://developer.ibm.com/)
- - [Data alignment: Straighten up and fly right](https://developer.ibm.com/technologies/systems/articles/pa-dalign/)
+  - [Data alignment: Straighten up and fly right](https://developer.ibm.com/technologies/systems/articles/pa-dalign/)
 
 ## Namesake
 
