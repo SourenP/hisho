@@ -57,10 +57,10 @@ void hisho_ff__free(void *p) {
     Header *curr = (Header *)p - 1; // Move back pointer to header
     curr->s.is_used = false;
 
-    // If next block is unused, merge with current block
+    // If next block is unused, coalesce with current block
     Header *next = curr->s.next_block;
     if (next->s.is_used == false) {
-        _hisho_ff__merge(curr, next);
+        _hisho_ff__coalesce(curr, next);
     }
 }
 
@@ -99,7 +99,7 @@ HeaderPair _hisho_ff__find_unused_block(unsigned n_units) {
     return (HeaderPair){.prev = prev, .curr = curr};
 }
 
-void _hisho_ff__merge(Header *a, Header *b) {
+void _hisho_ff__coalesce(Header *a, Header *b) {
     a->s.next_block = b->s.next_block;
     a->s.u_size = a->s.u_size + b->s.u_size + 1; // +1 for b's header
     a->s.is_used = false;

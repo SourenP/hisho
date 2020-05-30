@@ -18,25 +18,34 @@ make clean
 
 ## Implementations
 
-### First fit memory allocator
+### Dynamic memory allocator with 'buddy system'
+
+### Dynamic memory allocator with 'first fit' strategy
 
 - **Code**: [src/hisho_ff.h](src/hisho_ff.h)
 - **Test**: [src/hisho_ff_test.c](src/hisho_ff_test.c)
 - **Description**:
   - A storage allocator implemented with a linked list that allocates blocks using the 'first fit' strategy.
-  - On free a block will merge with the next block if it's unused but not the previous block.
-  - All block sizes are a multiple of the block header size which is set to `2*sizeof(long)` for alignment purposes.
+  - Each block has an overhead of 16 bytes for its header.
+  - On free a block will coalesce with the next block if it's unused, but not the previous block.
+  - All block sizes are a multiple of the block header size for alignment purposes.
   - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
-  - Todo: add more later
+  - Simple
 - **Cons**:
-  - Todo: add more later
+  - 16 byte overhead due to header size (todo)
+  - Internal fragmentation due to:
+    - block sizes being a miltiple of the header size
+  - External fragmentation due to:
+    - simplicity of first fit strategy
+    - coalescing only occuring with next block (todo)
+  - Fixed memory expansion size set at compile time (todo)
 - **Usage**:
     ```c
     // alloc
-    char *p = (char *)hisho_ff__alloc(6);
     char str[] = "hisho";
-    memcpy(p, str, 6);
+    char *p = (char *)hisho_ff__alloc(sizeof(str));
+    memcpy(p, str, sizeof(str));
 
     // free
     hisho_ff__free(p);
@@ -59,8 +68,13 @@ make clean
             Header  Buffer  Free    Total
             2       2       1020    1024
     ```
+-- **Todo**
+  - Add functionality to coalese with prev block
+  - Reduce size of header to long instead of 2*long
+    - Encode `is_used` into `u_size`'s first bit
+  - Allow option to initalize allocator in order to set parameters like expansion size.
 
-### Stack memory allocator with static storage
+### Stack static memory allocator
 - **Code**: [src/hisho_s.h](src/hisho_s.h)
 - **Test**: [src/hisho_s_test.c](src/hisho_s_test.c)
 - **Description**:
@@ -70,18 +84,17 @@ make clean
   - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
   - Very simple
-  - Data stored sequentially
+  - No fragmentation since data stored sequentially
 - **Cons**:
-  - Fixed size
+  - Fixed size that must be set at compile time
   - Can only free last allocation
   - Wastes unused memory space
-  - Todo: add more later
 - **Usage**:
     ```c
     // alloc
     char str[] = "hisho";
-    char *p = hisho_s__alloc(6);
-    memcpy(p, str, 6);
+    char *p = hisho_s__alloc(sizeof(str));
+    memcpy(p, str, sizeof(str));
 
     // free
     hisho_s__free(p);
@@ -121,17 +134,9 @@ make clean
 
 ## Todo
 
-- [ ] Stack memory allocator with static storage
-  - [X] Write core code
-  - [ ] Add more pros/cons
-  - [ ] Improve usage example
-- [ ] First fit memory allocator
-  - [X] Write core code
-  - [ ] Clean up code
-  - [ ] Add more pros/cons
-  - [ ] Improve usage example
+- [X] Stack memory allocator with static storage
+- [X] First fit memory allocator
 - [ ] Buddy memory allocator
-  - [ ] Write core code
 
 ## Namesake
 

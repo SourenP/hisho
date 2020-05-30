@@ -2,11 +2,12 @@
  * A storage allocator implemented with a linked list that allocates blocks using the 'first fit'
  * strategy.
  *
- * On free a block will merge with the next block if it's unused but not the previous block.
- * All block sizes are a multiple of the block header size which is set to 2*sizeof(long)
- * for alignment purposes.
+ * Each block has an overhead of 16 bytes for its header.
+ * On free a block will coalesce with the next block if it's unused, but not the previous block.
+ * All block sizes are a multiple of the block header size for alignment purposes.
  *
- * Written with the help of resoruces listes in README.md
+ *
+ * Written with the help of resoruces listed in README.md
  */
 
 #include <stdbool.h>
@@ -43,7 +44,7 @@ void *hisho_ff__alloc(unsigned n_bytes);
 
 /**
  * Free memory.
- * If the freed block's next block is unused, they will be merged into one block.
+ * If the freed block's next block is unused, they will be coalesced into one block.
  *
  * @param p Pointer to memory block to free.
  */
@@ -70,10 +71,10 @@ static HeaderPair _hisho_ff__find_unused_block(unsigned n_units);
  * Merge two unused blocks into one.
  * New block will use a's header, will point to b's next and will be marked unused.
  *
- * @param a First block to be merged.
- * @param b Second block to be merged.
+ * @param a First block to be coalesced.
+ * @param b Second block to be coalesced.
  */
-static void _hisho_ff__merge(Header *a, Header *b);
+static void _hisho_ff__coalesce(Header *a, Header *b);
 
 /**
  * Print list of blocks and their properties.
