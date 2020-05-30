@@ -6,8 +6,8 @@ vpath %.h $(SEARCHPATH)
 
 DEPS +=
 
-_OBJS += hisho_stack.o
-_OBJS += hisho_stack_test.o
+_OBJS += hisho_stack.o hisho_stack_test.o
+_OBJS += hisho_first_fit.o hisho_first_fit_test.o
 _OBJS += main.o
 
 OBJS = $(patsubst %,$(OUT)/%,$(_OBJS))

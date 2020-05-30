@@ -28,7 +28,7 @@ make clean
   - Written with the help of "K&R: The C Programming Language. 2nd Edition: Chapter 5.4".
   - Pros:
     - Very simple
-    - Data stored sequentially 
+    - Data stored sequentially
   - Cons:
     - Fixed size
     - Can only free last allocation
