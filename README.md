@@ -26,7 +26,7 @@ make clean
   - A storage allocator implemented with a linked list that allocates blocks using the 'first fit' strategy.
   - On free a block will merge with the next block if it's unused but not the previous block.
   - All block sizes are a multiple of the block header size which is set to `2*sizeof(long)` for alignment purposes.
-  - Written with the help of resources listed in [Resources](#resources).
+  - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
   - Todo: add more later
 - **Cons**:
@@ -78,7 +78,7 @@ make clean
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
   - Free calls must be made in opposite order to the alloc calls.
   - Memory is fixed in size and stored in a static variable (data segment of virtual address space of program).
-  - See README.md for resrouces used to write this.
+  - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
   - Very simple
   - Data stored sequentially
