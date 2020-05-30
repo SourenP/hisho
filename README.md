@@ -38,37 +38,26 @@ make clean
     char str[] = "hisho";
     memcpy(p, str, 6);
 
-    // debug print
-    hisho_ff__print_blocks();
-    hisho_ff__print_stats();
-
     // free
     hisho_ff__free(p);
-
-    // debug print
+    ```
+- **Debug**
+    ```c
+    // Print a table of all blocks and their properties
     hisho_ff__print_blocks();
+
+    // Print stats about the allocator
     hisho_ff__print_stats();
     ```
-    *stdout*
     ```
     Blocks
             Header          Units   Size    Used    Next            Chars
             0x1098c32c0     0       0       1       0x10d1ed000
             0x10d1ed000     2       32      1       0x10d1ed030     hisho
             0x10d1ed030     1020    16320   0       0x0
-
     Stats
             Header  Buffer  Free    Total
             2       2       1020    1024
-
-    Blocks
-            Header          Units   Size    Used    Next            Chars
-            0x1098c32c0     0       0       1       0x10d1ed000
-            0x10d1ed000     1023    16368   0       0x0             hisho�
-
-    Stats
-            Header  Buffer  Free    Total
-            1       0       1023    1024
     ```
 
 ### Stack memory allocator with static storage
@@ -94,22 +83,17 @@ make clean
     char *p = hisho_s__alloc(6);
     memcpy(p, str, 6);
 
-    // debug print
-    hisho_s__print();
-
     // free
     hisho_s__free(p);
-
-    // debug print
+    ```
+- **Debug**:
+    ```c
+    // Print memory and head pointer
     hisho_s__print();
     ```
-    *stdout*
     ```
     [hisho       ]
     [     ^      ]
-
-    [hisho       ]
-    [            ]
     ```
 
 ## Resources
