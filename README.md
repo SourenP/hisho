@@ -133,7 +133,6 @@ make clean
   - [Explain this implementation of malloc from the K&R book](https://stackoverflow.com/a/36512105/2019764)
 - Videos
   - [Code for Game Developers - Anatomy of a Memory Allocation](https://www.youtube.com/watch?v=c0g3S_2QxWM)
-- Papers
   - [Ryan Zezeski on Memory by the Slab: The Tale of Bonwick's Slab Allocator](https://paperswelove.org/2015/video/ryan-zezeski-memory-by-the-slab/)
 
 ## Todo
