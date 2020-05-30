@@ -19,8 +19,8 @@ make clean
 ## Implementations
 
 ### Stack memory allocator with static storage
-- **Code**: [src/hisho_stack.h](src/hisho_stack.h)
-- **Test**: [src/hisho_stack_test.c](src/hisho_stack_test.c)
+- **Code**: [src/hisho_s.h](src/hisho_s.h)
+- **Test**: [src/hisho_s_test.c](src/hisho_s_test.c)
 - **Description**:
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
   - Free calls must be made in opposite order to the alloc calls.
@@ -38,13 +38,13 @@ make clean
     ```c
     // alloc
     char *hisho_str = "hisho";
-    char *hisho_p = hisho_stack__alloc(5);
+    char *hisho_p = hisho_s__alloc(5);
     memcpy(hisho_p, hisho_str, 5 * sizeof(char));
-    hisho_stack__print();
+    hisho_s__print();
 
     // free
-    hisho_stack__free(hisho_p);
-    hisho_stack__print(hisho_p);
+    hisho_s__free(hisho_p);
+    hisho_s__print(hisho_p);
     ```
     *stdout*
     ```

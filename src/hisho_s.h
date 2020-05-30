@@ -26,13 +26,13 @@ static char *alloc_next = alloc_buffer;
  * @param n Number of characters to allocate.
  * @return Pointer to n characters in storage.
  */
-char *hisho_stack__alloc(int n);
+char *hisho_s__alloc(int n);
 
 /**
  * Free previously allocated storage space pointed to by p.
  * @param p Pointer to start of storage space to free.
  */
-void hisho_stack__free(char *p);
+void hisho_s__free(char *p);
 
 /**
  * Print characters of the entire buffer and show where next is pointing with a
@@ -42,4 +42,4 @@ void hisho_stack__free(char *p);
  * [     ^ ]
  * Used for debugging.
  */
-void hisho_stack__print();
+void hisho_s__print();

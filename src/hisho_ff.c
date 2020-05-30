@@ -1,9 +1,9 @@
-#include "hisho_first_fit.h"
+#include "hisho_ff.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
-void *hisho_first_fit__alloc(unsigned n_bytes) {
+void *hisho_ff__alloc(unsigned n_bytes) {
     // Calculate how many units of memory is needed for this block (including header)
     div_t div_res = div(n_bytes, sizeof(Header));
     unsigned n_units = div_res.quot + (div_res.rem > 0) + 1; // + 1 for header
@@ -18,11 +18,11 @@ void *hisho_first_fit__alloc(unsigned n_bytes) {
     }
 
     // Find an unused block's header and it's previous block's header
-    HeaderPair unused_header_pair = _hisho_fit_first__find_unused_block();
+    HeaderPair unused_header_pair = _hisho_ff__find_unused_block();
 
     // There are no free blocks, we need to allocate more space and use the new block
     if (unused_header_pair.curr == NULL) {
-        unused_header_pair.curr = _hisho_fit_first__more_core(n_units);
+        unused_header_pair.curr = _hisho_ff__more_core(n_units);
         if (unused_header_pair.curr == NULL) {
             printf("Failed to allocate more memory from system. Exiting...\n");
             exit(EXIT_FAILURE);
@@ -33,10 +33,10 @@ void *hisho_first_fit__alloc(unsigned n_bytes) {
     return NULL; // todo remove
 }
 
-void hisho_first_fit__free(void *p) {
+void hisho_ff__free(void *p) {
 }
 
-Header *_hisho_fit_first__more_core(unsigned n_units) {
+Header *_hisho_ff__more_core(unsigned n_units) {
     char *new_mem;
 
     if (n_units < REFRESH_BLOCK_COUNT) {
@@ -57,7 +57,7 @@ Header *_hisho_fit_first__more_core(unsigned n_units) {
     return new_header;
 }
 
-static HeaderPair _hisho_fit_first__find_unused_block() {
+static HeaderPair _hisho_ff__find_unused_block() {
     Header *prev = free_start;
     Header *curr = free_start->s.next_block;
     while (curr != NULL) {
@@ -70,7 +70,7 @@ static HeaderPair _hisho_fit_first__find_unused_block() {
     return (HeaderPair){.prev = prev, .curr = curr};
 }
 
-void hisho_fit_first__print() {
+void hisho_ff__print() {
     printf("\n");
     printf("Header  \tSize\tUsed\tNext\n");
     Header *h = free_start;

@@ -32,9 +32,9 @@ typedef struct header_pair {
 static Header *free_start = NULL; // Free list starting point
 static Header base;               // Dummy header that marks the start of the free list
 
-void *hisho_first_fit__alloc(unsigned nbytes);
+void *hisho_ff__alloc(unsigned nbytes);
 
-void hisho_first_fit__free(void *p);
+void hisho_ff__free(void *p);
 
 /**
  * Ask system for more memory.
@@ -43,13 +43,13 @@ void hisho_first_fit__free(void *p);
  * size of a header.
  * @return Return pointer to beginning of memory. Return NULL if failed to retrieve memory.
  */
-static Header *_hisho_fit_first__more_core(unsigned n_units);
+static Header *_hisho_ff__more_core(unsigned n_units);
 
 /**
  * Find an unused block in the free list.
  *
  * @return Pointer to header of unused block. If none are found NULL is returned.
  */
-static HeaderPair _hisho_fit_first__find_unused_block();
+static HeaderPair _hisho_ff__find_unused_block();
 
-void hisho_fit_first__print();
+void hisho_ff__print();
