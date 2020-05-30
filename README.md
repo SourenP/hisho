@@ -86,6 +86,7 @@ make clean
 
 - [X] Stack memory allocator with static storage
   - [ ] Add more pros/cons
+- [ ] First fit memory allocator
 - [ ] Buddy memory allocator
 
 ## Namesake

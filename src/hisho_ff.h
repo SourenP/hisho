@@ -13,15 +13,16 @@
 #include <stdbool.h>
 #include <unistd.h>
 
-#define REFRESH_BLOCK_COUNT 1024 // Number of block sizes to allocate on call to sbrk
+#define REFRESH_BLOCK_COUNT 1024 // Number of block sizes to allocate on sys mem call
 
+/* Header of a block */
 typedef union header {
     struct {
-        union header *next_block;
-        unsigned size;
-        bool is_used;
+        union header *next_block; // Pointer to next block.
+        unsigned u_size; // Size of block buffer by units where unit is the size of a header.
+        bool is_used;    // True if block is currently being used.
     } s;
-    long x[2]; // not used
+    long x[2]; // Field not used. Exists for alignment purposes.
 } Header;
 
 typedef struct header_pair {
@@ -32,8 +33,21 @@ typedef struct header_pair {
 static Header *free_start = NULL; // Free list starting point
 static Header base;               // Dummy header that marks the start of the free list
 
-void *hisho_ff__alloc(unsigned nbytes);
+/**
+ * Allocate memory on heap and return a pointer to it.
+ * New memory is not guaranteed to be cleared to 0s.
+ *
+ * @param n_bytes Number of bytes to allocate.
+ * @return Pointer to the memory address.
+ */
+void *hisho_ff__alloc(unsigned n_bytes);
 
+/**
+ * Free memory.
+ * If the freed block's next block is unused, they will be merged into one block.
+ *
+ * @param p Pointer to memory block to free.
+ */
 void hisho_ff__free(void *p);
 
 /**
@@ -46,10 +60,28 @@ void hisho_ff__free(void *p);
 static Header *_hisho_ff__more_core(unsigned n_units);
 
 /**
- * Find an unused block in the free list.
+ * Find a block in the free list that's unused and fits n_units.
  *
+ * @param n_units Units of memory block should be able to fit.
  * @return Pointer to header of unused block. If none are found NULL is returned.
  */
-static HeaderPair _hisho_ff__find_unused_block();
+static HeaderPair _hisho_ff__find_unused_block(unsigned n_units);
 
-void hisho_ff__print();
+/**
+ * Merge two unused blocks into one.
+ * New block will use a's header, will point to b's next and will be marked unused.
+ *
+ * @param a First block to be merged.
+ * @param b Second block to be merged.
+ */
+static void _hisho_ff__merge(Header *a, Header *b);
+
+/**
+ * Print list of blocks and their properties.
+ */
+void hisho_ff__print_blocks();
+
+/**
+ * Print stats about allocator memory.
+ */
+void hisho_ff__print_stats();
