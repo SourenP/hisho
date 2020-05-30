@@ -106,11 +106,11 @@ void _hisho_ff__merge(Header *a, Header *b) {
 }
 
 void hisho_ff__print_blocks() {
-    printf("BLOCKS\n");
-    printf("%-8s\t%s\t%s\t%s\t%-8s\t%s\n", "Header", "Units", "Size", "Used", "Next", "Chars");
+    printf("Blocks\n");
+    printf("\t%-8s\t%s\t%s\t%s\t%-8s\t%s\n", "Header", "Units", "Size", "Used", "Next", "Chars");
     Header *h = free_start;
     while (h != NULL) {
-        printf("%p\t%u\t%lu\t%d\t%-8p\t", h, h->s.u_size, h->s.u_size * sizeof(Header),
+        printf("\t%p\t%u\t%lu\t%d\t%-8p\t", h, h->s.u_size, h->s.u_size * sizeof(Header),
                h->s.is_used, h->s.next_block);
         char *c = (char *)(h + 1);
         for (int i = 0; i < (h->s.u_size * sizeof(Header)); i++) {
@@ -119,6 +119,7 @@ void hisho_ff__print_blocks() {
         h = h->s.next_block;
         printf("\n");
     }
+    printf("\n");
 }
 
 void hisho_ff__print_stats() {
@@ -142,7 +143,8 @@ void hisho_ff__print_stats() {
         h = h->s.next_block;
     }
     total_units = header_units + buffer_units + free_units;
-    printf("UNIT COUNTS\n");
-    printf("%s\t%s\t%s\t%s\n", "Header", "Buffer", "Free", "Total");
-    printf("%u\t%u\t%u\t%u\n", header_units, buffer_units, free_units, total_units);
+    printf("Stats\n");
+    printf("\t%s\t%s\t%s\t%s\n", "Header", "Buffer", "Free", "Total");
+    printf("\t%u\t%u\t%u\t%u\n", header_units, buffer_units, free_units, total_units);
+    printf("\n");
 }

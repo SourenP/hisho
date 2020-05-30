@@ -1,13 +1,12 @@
 /**
- * A storage allocator implemented with a linked list that allocates blocks
- * using the 'first fit' strategy.
+ * A storage allocator implemented with a linked list that allocates blocks using the 'first fit'
+ * strategy.
  *
- * All block sizes are a multiple of the block header size which is set to long
- * for alignment (optimization).
+ * On free a block will merge with the next block if it's unused but not the previous block.
+ * All block sizes are a multiple of the block header size which is set to 2*sizeof(long)
+ * for alignment purposes.
  *
- * Written with the help of:
- * - "K&R: The C Programming Language. 2nd Edition: Chapter 8.7"
- * - "TODO"
+ * Written with the help of resoruces listes in README.md
  */
 
 #include <stdbool.h>

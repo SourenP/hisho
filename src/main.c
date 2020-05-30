@@ -9,7 +9,6 @@
 
 int main(int argc, char *argv[]) {
     test_hisho_s();
-    printf("\n");
     test_hisho_ff();
     printf("Done.\n");
     return 0;

@@ -31,4 +31,5 @@ void hisho_s__print() {
         printf("%c", a == alloc_next ? '^' : ' ');
     }
     printf("]\n");
+    printf("\n");
 }

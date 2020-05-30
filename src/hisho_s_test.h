@@ -2,6 +2,6 @@
 
 #include "hisho_s.h"
 
-#define DEBUG_HISHO_STACK_TEST 0
+#define DEBUG_HISHO_S_TEST 0
 
 void test_hisho_s();

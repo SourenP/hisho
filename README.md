@@ -18,6 +18,59 @@ make clean
 
 ## Implementations
 
+### First fit memory allocator
+
+- **Code**: [src/hisho_ff.h](src/hisho_ff.h)
+- **Test**: [src/hisho_ff_test.c](src/hisho_ff_test.c)
+- **Description**:
+  - A storage allocator implemented with a linked list that allocates blocks using the 'first fit' strategy.
+  - On free a block will merge with the next block if it's unused but not the previous block.
+  - All block sizes are a multiple of the block header size which is set to `2*sizeof(long)` for alignment purposes.
+  - Written with the help of resources listed in [Resources](#resources).
+- **Pros**:
+  - Todo: add more later
+- **Cons**:
+  - Todo: add more later
+- **Usage**:
+    ```c
+    // alloc
+    char *p = (char *)hisho_ff__alloc(6);
+    char str[] = "hisho";
+    memcpy(p, str, 6);
+
+    // debug print
+    hisho_ff__print_blocks();
+    hisho_ff__print_stats();
+
+    // free
+    hisho_ff__free(p);
+
+    // debug print
+    hisho_ff__print_blocks();
+    hisho_ff__print_stats();
+    ```
+    *stdout*
+    ```
+    Blocks
+            Header          Units   Size    Used    Next            Chars
+            0x1098c32c0     0       0       1       0x10d1ed000
+            0x10d1ed000     2       32      1       0x10d1ed030     hisho
+            0x10d1ed030     1020    16320   0       0x0
+
+    Stats
+            Header  Buffer  Free    Total
+            2       2       1020    1024
+
+    Blocks
+            Header          Units   Size    Used    Next            Chars
+            0x1098c32c0     0       0       1       0x10d1ed000
+            0x10d1ed000     1023    16368   0       0x0             hisho�
+
+    Stats
+            Header  Buffer  Free    Total
+            1       0       1023    1024
+    ```
+
 ### Stack memory allocator with static storage
 - **Code**: [src/hisho_s.h](src/hisho_s.h)
 - **Test**: [src/hisho_s_test.c](src/hisho_s_test.c)
@@ -25,33 +78,38 @@ make clean
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
   - Free calls must be made in opposite order to the alloc calls.
   - Memory is fixed in size and stored in a static variable (data segment of virtual address space of program).
-  - Written with the help of "K&R: The C Programming Language. 2nd Edition: Chapter 5.4".
-  - Pros:
-    - Very simple
-    - Data stored sequentially
-  - Cons:
-    - Fixed size
-    - Can only free last allocation
-    - Wastes unused memory space
-    - Todo: add more later
+  - See README.md for resrouces used to write this.
+- **Pros**:
+  - Very simple
+  - Data stored sequentially
+- **Cons**:
+  - Fixed size
+  - Can only free last allocation
+  - Wastes unused memory space
+  - Todo: add more later
 - **Usage**:
     ```c
     // alloc
-    char *hisho_str = "hisho";
-    char *hisho_p = hisho_s__alloc(5);
-    memcpy(hisho_p, hisho_str, 5 * sizeof(char));
+    char str[] = "hisho";
+    char *p = hisho_s__alloc(6);
+    memcpy(p, str, 6);
+
+    // debug print
     hisho_s__print();
 
     // free
-    hisho_s__free(hisho_p);
-    hisho_s__print(hisho_p);
+    hisho_s__free(p);
+
+    // debug print
+    hisho_s__print();
     ```
     *stdout*
     ```
     [hisho       ]
-    [    ^       ]
+    [     ^      ]
+
     [hisho       ]
-    [^           ]
+    [            ]
     ```
 
 ## Resources
@@ -84,10 +142,17 @@ make clean
 
 ## Todo
 
-- [X] Stack memory allocator with static storage
+- [ ] Stack memory allocator with static storage
+  - [X] Write core code
   - [ ] Add more pros/cons
+  - [ ] Improve usage example
 - [ ] First fit memory allocator
+  - [X] Write core code
+  - [ ] Clean up code
+  - [ ] Add more pros/cons
+  - [ ] Improve usage example
 - [ ] Buddy memory allocator
+  - [ ] Write core code
 
 ## Namesake
 

@@ -6,8 +6,7 @@
  * Memory is fixed in size and stored in a static variable (data segment of
  * virtual address space of program).
  *
- * Written with the help of:
- * - "K&R: The C Programming Language. 2nd Edition: Chapter 5.4".
+ * See README.md for resrouces used to write this.
  */
 
 #pragma once
