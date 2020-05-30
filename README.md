@@ -41,7 +41,7 @@ make clean
     // free
     hisho_ff__free(p);
     ```
-- **Debug**
+- **Debug**:
     ```c
     // Print a table of all blocks and their properties
     hisho_ff__print_blocks();
