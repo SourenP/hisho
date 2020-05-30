@@ -114,31 +114,27 @@ make clean
 
 ## Resources
 
-- K&R
-  - [The C Programming Language. 2nd Edition](https://g.co/kgs/qax39B)
-- [bitsquid.blogspot.com](http://bitsquid.blogspot.com/)
+- Books
+  - [K&R: The C Programming Language. 2nd Edition](https://g.co/kgs/qax39B)
+- Articles
+  - [Wikipedia: Memory Management](https://en.wikipedia.org/wiki/Memory_management)
+  - [Wikipedia: Buddy Memory Allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
+  - [Wikipedia: CPU cache](https://en.wikipedia.org/wiki/CPU_cache)
+  - [Data alignment: Straighten up and fly right](https://developer.ibm.com/technologies/systems/articles/pa-dalign/)
+  - [Writing a memory manager](https://wiki.osdev.org/Writing_a_memory_manager)
+- Blog Posts
   - [Allocation Adventures 1: The DataComponent](http://bitsquid.blogspot.com/2015/06/allocation-adventures-1-datacomponent.html)
   - [Allocation Adventures 2: Arrays of Arrays](http://bitsquid.blogspot.com/2015/06/allocation-adventures-2-arrays-of-arrays.html)
   - [Allocation Adventures 3: The Buddy Allocator](http://bitsquid.blogspot.com/2015/08/allocation-adventures-3-buddy-allocator.html)
-- [github.com](https://github.com)
   - [angrave/SystemProgramming: Memory, Part 1: Heap Memory Introduction](https://github.com/angrave/SystemProgramming/wiki/Memory,-Part-1:-Heap-Memory-Introduction)
   - [angrave/SystemProgramming: Memory, Part 2: Implementing a Memory Allocator](https://github.com/angrave/SystemProgramming/wiki/Memory%2C-Part-2%3A-Implementing-a-Memory-Allocator)
-- [wikipedia.org](https://en.wikipedia.org/wiki/Main_Page)
-  - [Memory Management](https://en.wikipedia.org/wiki/Memory_management)
-  - [Buddy Memory Allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
-  - [CPU cache](https://en.wikipedia.org/wiki/CPU_cache)
-- [stackoverflow.com](https://stackoverflow.com)
-  - [drpritch: Explain this implementation of malloc from the K&R book](https://stackoverflow.com/a/36512105/2019764)
-- [osdev.org](https://wiki.osdev.org/Main_Page)
-  - [Writing a memory manager](https://wiki.osdev.org/Writing_a_memory_manager)
-- [paperswelove.org](https://paperswelove.org/)
-  - [Ryan Zezeski on Memory by the Slab: The Tale of Bonwick's Slab Allocator](https://paperswelove.org/2015/video/ryan-zezeski-memory-by-the-slab/)
-- [arjunsreedharan.org](https://arjunsreedharan.org/)
-  - [Memory Allocators 101 - Write a simple memory allocator](https://arjunsreedharan.org/post/148675821737/memory-allocators-101-write-a-simple-memory)
-- [marek.vavrusa.com](https://marek.vavrusa.com/)
   - [What a C programmer should know about memory](https://marek.vavrusa.com/memory/)
-- [developer.ibm.com](https://developer.ibm.com/)
-  - [Data alignment: Straighten up and fly right](https://developer.ibm.com/technologies/systems/articles/pa-dalign/)
+- Stack Overflow
+  - [Explain this implementation of malloc from the K&R book](https://stackoverflow.com/a/36512105/2019764)
+- Videos
+  - [Code for Game Developers - Anatomy of a Memory Allocation](https://www.youtube.com/watch?v=c0g3S_2QxWM)
+- Papers
+  - [Ryan Zezeski on Memory by the Slab: The Tale of Bonwick's Slab Allocator](https://paperswelove.org/2015/video/ryan-zezeski-memory-by-the-slab/)
 
 ## Todo
 
