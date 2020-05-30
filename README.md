@@ -18,8 +18,6 @@ make clean
 
 ## Implementations
 
-### Dynamic memory allocator with 'buddy system'
-
 ### Dynamic memory allocator with 'first fit' strategy
 
 - **Code**: [src/hisho_ff.h](src/hisho_ff.h)
@@ -68,7 +66,7 @@ make clean
             Header  Buffer  Free    Total
             2       2       1020    1024
     ```
--- **Todo**
+- **Todo**
   - Add functionality to coalese with prev block
   - Reduce size of header to long instead of 2*long
     - Encode `is_used` into `u_size`'s first bit
