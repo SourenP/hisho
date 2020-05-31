@@ -68,7 +68,7 @@ make clean
     - Encode `is_used` into `u_size`'s first bit
   - Allow option to initalize allocator in order to set parameters like expansion size.
 
-### Stack static memory allocator
+### Static memory allocator with stack
 - **Code**: [src/hisho_s.h](src/hisho_s.h)
 - **Description**:
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
