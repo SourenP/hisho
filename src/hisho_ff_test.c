@@ -30,7 +30,7 @@ void test_hisho_ff() {
     }
 
     // third alloc
-    char str_3[] = "memory";
+    char str_3[] = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor";
     char *p_3 = (char *)hisho_ff__alloc(sizeof(str_3));
     memcpy(p_3, str_3, sizeof(str_3));
 

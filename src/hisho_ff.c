@@ -6,8 +6,7 @@
 
 void *hisho_ff__alloc(unsigned n_bytes) {
     // Calculate how many units of memory is needed for this block (including header)
-    div_t div_res = div(n_bytes, sizeof(Header));
-    unsigned n_units = div_res.quot + (div_res.rem > 0) + 1; // + 1 for header
+    unsigned n_units = ((n_bytes + sizeof(Header) - 1) / sizeof(Header)) + 1;
 
     // Initialize free_start into a dummy start header with no buffer space
     if (free_start == NULL) {
@@ -47,7 +46,7 @@ void *hisho_ff__alloc(unsigned n_bytes) {
     }
 
     // Create current block
-    curr_header->s.u_size = n_units;
+    curr_header->s.u_size = n_units - 1;
     curr_header->s.is_used = true;
 
     return curr_header + 1; // return memory address of buffer after header

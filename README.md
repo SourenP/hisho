@@ -2,13 +2,7 @@
 
 Several memory allocators in C99 written for learning purposes.
 
-Status: _WIP_ (see [#Todo](#todo))
-
 ## Run
-
-Reqs:
-  - `clang`
-  - `asan`
 
 ```bash
 make
@@ -29,6 +23,8 @@ make clean
   - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
   - Simple
+  - Avoids external fragmentation to a certain degree
+  - Memory blocks are aligned
 - **Cons**:
   - 16 byte overhead due to header size (todo)
   - Internal fragmentation due to:
