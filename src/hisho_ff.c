@@ -1,7 +1,5 @@
 #include "hisho_ff.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <sys/mman.h>
 
 void *hisho_ff__alloc(unsigned n_bytes) {
@@ -26,7 +24,7 @@ void *hisho_ff__alloc(unsigned n_bytes) {
     if (curr_header == NULL) {
         curr_header = _hisho_ff__more_core(n_units);
         if (curr_header == NULL) {
-            printf("Failed to allocate more memory from system. Exiting.\n");
+            fprintf(stderr, "Failed to allocate more memory from system. Exiting.\n");
             exit(EXIT_FAILURE);
         }
 
@@ -53,7 +51,7 @@ void *hisho_ff__alloc(unsigned n_bytes) {
 }
 
 void hisho_ff__free(void *p) {
-    Header *curr = (Header *)p - 1; // Move back pointer to header
+    Header *curr = ((Header *)p) - 1; // Move back pointer to header
     curr->s.is_used = false;
 
     // If next block is unused, coalesce with current block
@@ -104,24 +102,28 @@ void _hisho_ff__coalesce(Header *a, Header *b) {
     a->s.is_used = false;
 }
 
-void hisho_ff__print_blocks() {
-    printf("Blocks\n");
-    printf("\t%-8s\t%s\t%s\t%s\t%-8s\t%s\n", "Header", "Units", "Size", "Used", "Next", "Chars");
+void hisho_ff__print_blocks(FILE *stream) {
+    fprintf(stream, "Blocks\n");
+    fprintf(stream, "\t%-8s\t%-8s\t%-8s\t%-8s\t%-8s\t%-8s\n", "Header", "Units", "Size", "Used",
+            "Next", "Chars");
     Header *h = free_start;
     while (h != NULL) {
-        printf("\t%p\t%u\t%lu\t%d\t%-8p\t", h, h->s.u_size, h->s.u_size * sizeof(Header),
-               h->s.is_used, h->s.next_block);
+        fprintf(stream, "\t%-8p\t%-8u\t%-8lu\t%-8d\t%-8p\t", h, h->s.u_size,
+                h->s.u_size * sizeof(Header), h->s.is_used, h->s.next_block);
         char *c = (char *)(h + 1);
         for (int i = 0; i < (h->s.u_size * sizeof(Header)); i++) {
-            printf("%c", c[i]);
+            if (i > MAX_CHAR_PRINT) {
+                break;
+            }
+            fprintf(stream, "%c", c[i]);
         }
         h = h->s.next_block;
-        printf("\n");
+        fprintf(stream, "\n");
     }
-    printf("\n");
+    fprintf(stream, "\n");
 }
 
-void hisho_ff__print_stats() {
+void hisho_ff__print_stats(FILE *stream) {
     unsigned header_units = 0;
     unsigned buffer_units = 0;
     unsigned free_units = 0;
@@ -142,8 +144,10 @@ void hisho_ff__print_stats() {
         h = h->s.next_block;
     }
     total_units = header_units + buffer_units + free_units;
-    printf("Stats\n");
-    printf("\t%s\t%s\t%s\t%s\n", "Header", "Buffer", "Free", "Total");
-    printf("\t%u\t%u\t%u\t%u\n", header_units, buffer_units, free_units, total_units);
-    printf("\n");
+    fprintf(stream, "Stats\n");
+    fprintf(stream, "\t%-8s\t%-8s\t%-8s\t%-8s\t%-8s\n", "Header U", "Buffer U", "Free U", "Total U",
+            "Total S");
+    fprintf(stream, "\t%-8u\t%-8u\t%-8u\t%-8u\t%-8lu\n", header_units, buffer_units, free_units,
+            total_units, total_units * sizeof(Header));
+    fprintf(stream, "\n");
 }

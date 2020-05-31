@@ -11,8 +11,11 @@
  */
 
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 
+#define MAX_CHAR_PRINT 16        // Number of characters of memory to print before stopping in debug
 #define REFRESH_BLOCK_COUNT 1024 // Number of block sizes to allocate on sys mem call
 
 /* Header of a block */
@@ -78,10 +81,14 @@ static void _hisho_ff__coalesce(Header *a, Header *b);
 
 /**
  * Print list of blocks and their properties.
+ *
+ * @param stream Stream to print to.
  */
-void hisho_ff__print_blocks();
+void hisho_ff__print_blocks(FILE *stream);
 
 /**
  * Print stats about allocator memory.
+ *
+ * @param stream Stream to print to.
  */
-void hisho_ff__print_stats();
+void hisho_ff__print_stats(FILE *stream);

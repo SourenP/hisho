@@ -14,8 +14,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     // second alloc
@@ -25,8 +25,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     // third alloc
@@ -36,8 +36,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     // free second
@@ -45,8 +45,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     // free first
@@ -54,8 +54,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     // free third
@@ -63,8 +63,8 @@ void test_hisho_ff() {
 
     // debug print
     if (DEBUG_HISHO_FF_TEST) {
-        hisho_ff__print_blocks();
-        hisho_ff__print_stats();
+        hisho_ff__print_blocks(stdout);
+        hisho_ff__print_stats(stdout);
     }
 
     printf("[%s] Ended tests.\n", __FUNCTION__);

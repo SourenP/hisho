@@ -46,20 +46,21 @@ make clean
 - **Debug**:
     ```c
     // Print a table of all blocks and their properties
-    hisho_ff__print_blocks();
+    hisho_ff__print_blocks(stdout);
 
     // Print stats about the allocator
-    hisho_ff__print_stats();
+    hisho_ff__print_stats(stdout);
     ```
     ```
     Blocks
-            Header          Units   Size    Used    Next            Chars
-            0x1098c32c0     0       0       1       0x10d1ed000
-            0x10d1ed000     2       32      1       0x10d1ed030     hisho
-            0x10d1ed030     1020    16320   0       0x0
+            Header          Units           Size            Used            Next            Chars
+            0x1059bc420     0               0               1               0x1092e6000
+            0x1092e6000     1               16              1               0x1092e6030     hisho
+            0x1092e6030     1020            16320           0               0x0
+
     Stats
-            Header  Buffer  Free    Total
-            2       2       1020    1024
+            Header U        Buffer U        Free U          Total U         Total S
+            2               1               1020            1023            16368
     ```
 - **Todo**
   - Add functionality to coalese with prev block
