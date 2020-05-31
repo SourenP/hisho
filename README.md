@@ -21,7 +21,6 @@ make clean
 ### Dynamic memory allocator with 'first fit' strategy
 
 - **Code**: [src/hisho_ff.h](src/hisho_ff.h)
-- **Test**: [src/hisho_ff_test.c](src/hisho_ff_test.c)
 - **Description**:
   - A storage allocator implemented with a linked list that allocates blocks using the 'first fit' strategy.
   - Each block has an overhead of 16 bytes for its header.
@@ -74,7 +73,6 @@ make clean
 
 ### Stack static memory allocator
 - **Code**: [src/hisho_s.h](src/hisho_s.h)
-- **Test**: [src/hisho_s_test.c](src/hisho_s_test.c)
 - **Description**:
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
   - Free calls must be made in opposite order to the alloc calls.
