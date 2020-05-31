@@ -124,6 +124,7 @@ make clean
 - Videos
   - [Code for Game Developers - Anatomy of a Memory Allocation](https://www.youtube.com/watch?v=c0g3S_2QxWM)
   - [Ryan Zezeski on Memory by the Slab: The Tale of Bonwick's Slab Allocator](https://paperswelove.org/2015/video/ryan-zezeski-memory-by-the-slab/)
+  - [Handmade Hero Day 157 - Introduction to General Purpose Allocation](https://www.youtube.com/watch?v=MvDUe2evkHg)
 
 ## Todo
 
