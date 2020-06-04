@@ -3,7 +3,7 @@ PROG = hisho_test
 
 include common.mk
 
-CFLAGS += -g -fsanitize=address -std=c99
+CFLAGS += -Wall -g -fsanitize=address -std=c99
 LDFLAGS +=
 
 # linking the program.

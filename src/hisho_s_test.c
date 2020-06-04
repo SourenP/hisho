@@ -29,7 +29,6 @@ void test_hisho_s() {
     // Third alloc (failed)
     if (DEBUG_HISHO_S_TEST)
         printf("Alloc \"fail\":\n");
-    char *fail_str = "fail";
     char *fail_p = hisho_s__alloc(4);
     assert(fail_p == NULL);
     if (DEBUG_HISHO_S_TEST)
