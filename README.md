@@ -68,7 +68,7 @@ make clean
     - Encode `is_used` into `u_size`'s first bit
   - Allow option to initalize allocator in order to set parameters like expansion size.
 
-### Stack static memory allocator
+### Static memory allocator with stack
 - **Code**: [src/hisho_s.h](src/hisho_s.h)
 - **Description**:
   -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
@@ -124,6 +124,7 @@ make clean
 - Videos
   - [Code for Game Developers - Anatomy of a Memory Allocation](https://www.youtube.com/watch?v=c0g3S_2QxWM)
   - [Ryan Zezeski on Memory by the Slab: The Tale of Bonwick's Slab Allocator](https://paperswelove.org/2015/video/ryan-zezeski-memory-by-the-slab/)
+  - [Handmade Hero Day 157 - Introduction to General Purpose Allocation](https://www.youtube.com/watch?v=MvDUe2evkHg)
 
 ## Todo
 
