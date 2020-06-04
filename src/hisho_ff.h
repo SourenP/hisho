@@ -25,7 +25,7 @@ typedef union header {
         unsigned u_size; // Size of block buffer by units where unit is the size of a header.
         bool is_used;    // True if block is currently being used.
     } s;
-    long x[2]; // Field not used. Exists for alignment purposes.
+    size_t x[2]; // Field not used. Exists for alignment purposes.
 } Header;
 
 typedef struct header_pair {

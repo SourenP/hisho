@@ -64,7 +64,7 @@ make clean
     ```
 - **Todo**
   - Add functionality to coalese with prev block
-  - Reduce size of header to long instead of 2*long
+  - Reduce size of header to `sizeof(size_t)` instead of `2*sizeof(size_t)`
     - Encode `is_used` into `u_size`'s first bit
   - Allow option to initalize allocator in order to set parameters like expansion size.
 
