@@ -54,32 +54,6 @@ void *hisho_ff__alloc(unsigned n_bytes);
 void hisho_ff__free(void *p);
 
 /**
- * Ask system for more memory.
- *
- * @param n_units Number of units of memory blocks to retrive. A unit is the
- * size of a header.
- * @return Return pointer to beginning of memory. Return NULL if failed to retrieve memory.
- */
-static Header *_hisho_ff__more_core(unsigned n_units);
-
-/**
- * Find a block in the free list that's unused and fits n_units.
- *
- * @param n_units Units of memory block should be able to fit.
- * @return Pointer to header of unused block. If none are found NULL is returned.
- */
-static HeaderPair _hisho_ff__find_unused_block(unsigned n_units);
-
-/**
- * Merge two unused blocks into one.
- * New block will use a's header, will point to b's next and will be marked unused.
- *
- * @param a First block to be coalesced.
- * @param b Second block to be coalesced.
- */
-static void _hisho_ff__coalesce(Header *a, Header *b);
-
-/**
  * Print list of blocks and their properties.
  *
  * @param stream Stream to print to.
