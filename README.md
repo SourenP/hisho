@@ -106,6 +106,7 @@ make clean
 
 - Books
   - [K&R: The C Programming Language. 2nd Edition](https://g.co/kgs/qax39B)
+  - [Game Programming Patterns: Optimization Patterns: Data Locality](http://gameprogrammingpatterns.com/data-locality.html)
 - Articles
   - [Wikipedia: Memory Management](https://en.wikipedia.org/wiki/Memory_management)
   - [Wikipedia: Buddy Memory Allocation](https://en.wikipedia.org/wiki/Buddy_memory_allocation)
