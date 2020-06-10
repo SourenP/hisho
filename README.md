@@ -12,11 +12,12 @@ make clean
 
 ## Implementations
 
-### [WIP] Buddy Allocator
+### Buddy Allocator
 
 - **Code**: [src/hisho_buddy.h](src/hisho_buddy.h) [src/hisho_buddy.c](src/hisho_buddy.h)
 - **Description**:
   - A buddy memory allocator
+  - Implemented using an array of doubly linked lists, each representing a level 
   - On free, if a block's buddy is also free, a block and its buddy will merge into a free block twice their size.
   - Each block has an overhead of 16 bytes for its header.
   - Written with the help of resources listed in [#Resources](#resources).
@@ -29,7 +30,7 @@ make clean
   - 16 byte overhead due to header size
   - Internal fragmentation due to:
     - All block sizes being a power of 2
-  - Fixed memory size set at compile time
+  - Fixed memory size set at compile time ([#4](https://github.com/SourenP/hisho/issues/4))
 - **Usage**:
     ```c
     // alloc
@@ -53,7 +54,9 @@ make clean
     Level 4: 64
     ```
 - **Todo**
-    -
+  - [#2](https://github.com/SourenP/hisho/issues/2) Block size index can be optimized
+  - [#3](https://github.com/SourenP/hisho/issues/3) Block free index can be optimized
+  - [#4](https://github.com/SourenP/hisho/issues/4) Support setting the buddy allocator size at runtime
 
 ### Dynamic memory allocator with 'first fit' strategy
 
