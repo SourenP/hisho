@@ -6,13 +6,14 @@
 #include <stdlib.h>
 
 static const uint8_t MAX_LEVELS = 5;
-static const uint32_t LEAF_SIZE = 32;
+static const uint32_t LEAF_SIZE = 64;
 static const uint32_t INDEX_COUNT = (1 << MAX_LEVELS) - 1;
 static const uint32_t TOTAL_SIZE = (1 << (MAX_LEVELS - 1)) * LEAF_SIZE;
 static const uint32_t TOTAL_BLOCK_PTR_COUNT = (1 << (MAX_LEVELS - 1));
 
 typedef struct _header {
     struct _header *next;
+    struct _header *prev;
 } Header;
 
 /**
@@ -37,9 +38,8 @@ static uint32_t alloc_block_size[TOTAL_BLOCK_PTR_COUNT] = {0};
 /**
  * Bool indicating if block at index is free.
  * todo(sourenp): reduce this to half the size using the XOR trick
- * todo(sourenp): figure out what this is for lol
  */
-// static bool _is_block_free[1 << MAX_LEVELS] = {false};
+static bool _is_block_free[1 << MAX_LEVELS] = {true};
 
 /**
  * Allocate memory on heap and return a pointer to it.
