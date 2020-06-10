@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static const uint8_t MAX_LEVELS = 5;
-static const uint32_t LEAF_SIZE = 64;
-static const uint32_t INDEX_COUNT = (1 << MAX_LEVELS) - 1;
-static const uint32_t TOTAL_SIZE = (1 << (MAX_LEVELS - 1)) * LEAF_SIZE;
-static const uint32_t TOTAL_BLOCK_PTR_COUNT = (1 << (MAX_LEVELS - 1));
+static const uint32_t LEAF_SIZE = 64; // smallest block size in bytes
+static const uint8_t LEVEL_COUNT = 5; // number of levels, determines total size
+static const uint32_t INDEX_COUNT = (1 << LEVEL_COUNT) - 1;
+static const uint32_t TOTAL_SIZE = (1 << (LEVEL_COUNT - 1)) * LEAF_SIZE;
+static const uint32_t TOTAL_BLOCK_PTR_COUNT = (1 << (LEVEL_COUNT - 1));
 
 typedef struct _header {
     struct _header *next;
@@ -17,29 +17,24 @@ typedef struct _header {
 } Header;
 
 /**
- * Base pointer for memory allocated.
+ * Pointer to beginning of memory where blocks are stored.
  */
 static char *_buff_base = NULL;
 
 /**
  * Array of free lists indexed by level.
  */
-static Header *_free_lists[MAX_LEVELS] = {NULL};
+static Header *_free_lists[LEVEL_COUNT] = {NULL};
 
 /**
  * Array of block sizes by indexed by block pointer offset from _buff_base.
- * todo(sourenp): optimize this by storing whether block was split or not and use algo to find size
- *
- * Init to 0 for debugging purposes. This value should always at least be LEAF_SIZE when accessed.
- * todo(sourenp): remove {0}.
  */
-static uint32_t alloc_block_size[TOTAL_BLOCK_PTR_COUNT] = {0};
+static uint32_t alloc_block_size[TOTAL_BLOCK_PTR_COUNT];
 
 /**
  * Bool indicating if block at index is free.
- * todo(sourenp): reduce this to half the size using the XOR trick
  */
-static bool _is_block_free[1 << MAX_LEVELS] = {true};
+static bool _is_block_free[1 << LEVEL_COUNT] = {true};
 
 /**
  * Allocate memory on heap and return a pointer to it.

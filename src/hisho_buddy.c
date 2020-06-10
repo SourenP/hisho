@@ -75,12 +75,12 @@ static uint32_t _buddy_level_index(uint32_t block_level_index) {
  * @return Level of block that could hold n_bytes.
  */
 static uint8_t _block_level(uint32_t n_bytes) {
-    for (int l = MAX_LEVELS - 1; l >= 0; l--) {
+    for (int l = LEVEL_COUNT - 1; l >= 0; l--) {
         if (n_bytes <= _block_size(l)) {
             return l;
         }
     }
-    return MAX_LEVELS;
+    return LEVEL_COUNT;
 }
 
 /**
@@ -189,7 +189,7 @@ static void _free_list_remove(uint8_t level, Header *block) {
  */
 static Header *_find_block_to_alloc(uint8_t level) {
     // Attempting to allocate block with too large of a size.
-    if (level >= MAX_LEVELS) {
+    if (level >= LEVEL_COUNT) {
         return NULL;
     }
 
@@ -268,7 +268,7 @@ void hisho_buddy__free(void *block_ptr) {
 }
 
 void hisho_buddy__print_free_lists() {
-    for (int l = 0; l < MAX_LEVELS; l++) {
+    for (int l = 0; l < LEVEL_COUNT; l++) {
         printf("Level %d: ", l);
         Header *curr = _free_lists[l];
         while (curr != NULL) {
