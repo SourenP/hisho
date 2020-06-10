@@ -14,11 +14,50 @@ make clean
 
 ### [WIP] Buddy Allocator
 
-- **WIP Code**: [src/hisho_buddy.h](src/hisho_buddy.h)
+- **Code**: [src/hisho_buddy.h](src/hisho_buddy.h) [src/hisho_buddy.c](src/hisho_buddy.h)
+- **Description**:
+  - A buddy memory allocator
+  - On free, if a block's buddy is also free, a block and its buddy will merge into a free block twice their size.
+  - Each block has an overhead of 16 bytes for its header.
+  - Written with the help of resources listed in [#Resources](#resources).
+- **Pros**:
+  - Farily simple implementation
+  - Avoids external fragmentation
+  - Freeing memory is fast
+  - Memory blocks are word aligned
+- **Cons**:
+  - 16 byte overhead due to header size
+  - Internal fragmentation due to:
+    - All block sizes being a power of 2
+  - Fixed memory size set at compile time
+- **Usage**:
+    ```c
+    // alloc
+    char str[] = "hisho";
+    char *p = (char *)hisho_buddy__alloc(sizeof(str));
+    memcpy(p, str, sizeof(str));
+
+    // free
+    hisho_buddy__free(p);
+    ```
+- **Debug**:
+    ```c
+    // Print blocks, by their size, in all free lists.
+    hisho_buddy__print_free_lists(stdout);
+    ```
+    ```
+    Level 0:
+    Level 1: 512
+    Level 2: 256
+    Level 3: 128
+    Level 4: 64
+    ```
+- **Todo**
+    -
 
 ### Dynamic memory allocator with 'first fit' strategy
 
-- **Code**: [src/hisho_ff.h](src/hisho_ff.h)
+- **Code**: [src/hisho_ff.h](src/hisho_ff.h) [src/hisho_ff.c](src/hisho_ff.c)
 - **Description**:
   - A storage allocator implemented with a linked list that allocates blocks using the 'first fit' strategy.
   - Each block has an overhead of 16 bytes for its header.
@@ -26,9 +65,9 @@ make clean
   - All block sizes are a multiple of the block header size for alignment purposes.
   - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
-  - Simple
+  - Simple implementation
   - Avoids external fragmentation to a certain degree
-  - Memory blocks are aligned
+  - Memory blocks are word aligned
 - **Cons**:
   - 16 byte overhead due to header size (todo)
   - Internal fragmentation due to:
@@ -73,14 +112,14 @@ make clean
   - Allow option to initalize allocator in order to set parameters like expansion size.
 
 ### Static memory allocator with stack
-- **Code**: [src/hisho_s.h](src/hisho_s.h)
+- **Code**: [src/hisho_s.h](src/hisho_s.h) [src/hisho_s.c](src/hisho_s.c)
 - **Description**:
-  -  A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
+  - A rudimentary storage allocator that uses a LIFO queue (stack) to manage memory.
   - Free calls must be made in opposite order to the alloc calls.
   - Memory is fixed in size and stored in a static variable (data segment of virtual address space of program).
   - Written with the help of resources listed in [#Resources](#resources).
 - **Pros**:
-  - Very simple
+  - Very simple implementation
   - No fragmentation since data stored sequentially
 - **Cons**:
   - Fixed size that must be set at compile time
