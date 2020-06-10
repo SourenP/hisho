@@ -8,6 +8,7 @@ DEPS +=
 
 _OBJS += hisho_s.o hisho_s_test.o
 _OBJS += hisho_ff.o hisho_ff_test.o
+_OBJS += hisho_buddy.o hisho_buddy_test.o
 _OBJS += main.o
 
 OBJS = $(patsubst %,$(OUT)/%,$(_OBJS))

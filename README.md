@@ -12,6 +12,10 @@ make clean
 
 ## Implementations
 
+### [WIP] Buddy Allocator
+
+- **WIP Code**: [src/hisho_buddy.h](src/hisho_buddy.h)
+
 ### Dynamic memory allocator with 'first fit' strategy
 
 - **Code**: [src/hisho_ff.h](src/hisho_ff.h)
