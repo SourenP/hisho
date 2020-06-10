@@ -19,7 +19,7 @@ typedef struct _header {
 /**
  * Base pointer for memory allocated.
  */
-static char *_base_ptr = NULL;
+static char *_buff_base = NULL;
 
 /**
  * Array of free lists indexed by level.
@@ -27,7 +27,7 @@ static char *_base_ptr = NULL;
 static Header *_free_lists[MAX_LEVELS] = {NULL};
 
 /**
- * Array of block sizes by indexed by block pointer offset from _base_ptr.
+ * Array of block sizes by indexed by block pointer offset from _buff_base.
  * todo(sourenp): optimize this by storing whether block was split or not and use algo to find size
  *
  * Init to 0 for debugging purposes. This value should always at least be LEAF_SIZE when accessed.
@@ -59,6 +59,6 @@ void *hisho_buddy__alloc(uint32_t n_bytes);
 void hisho_buddy__free(void *p);
 
 /**
- * Print free lists and their block sizes at each level.
+ * Prints blocks, by their size, in all free lists.
  */
 void hisho_buddy__print_free_lists();
